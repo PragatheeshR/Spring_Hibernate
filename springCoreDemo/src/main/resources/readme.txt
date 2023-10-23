@@ -1,0 +1,1 @@
+If other packages outside bas pkg has to be scanned used ScanbasePackages option in @SpringBootApplication
