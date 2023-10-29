@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Form</title>
+</head>
+<body>
+
+<h3>Student Registration Form</h3>
+<form th:action="@{/processForm}" th:object="${student}" method="POST">
+
+    First Name:<input type="text" th:field="*{firstName}"/>
+    <br><br>
+    Last Name:<input type="text" th:field="*{lastName}"/>
+    <br><br>
+    Age:      <input type="text" th:field="*{age}"/>
+    <br><br>
+    Country: <select th:field="*{country}">
+
+        <!--<option th:value="India">India</option>
+        <option th:value="USA">USA</option>
+        <option th:value="France">France</option>
+        <option th:value="Brazil">Brazil</option>
+        <option th:value="UAE">UAE</option>-->
+    <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}"/>
+    </select>
+    <br><br>
+    Favourite Programming Language:
+    <!--<input type="radio" th:field="*{favProgramLang}"  th:value="Go">Go</input>
+    <input type="radio" th:field="*{favProgramLang}"  th:value="JAVA">JAVA</input>
+    <input type="radio" th:field="*{favProgramLang}"  th:value="DART">DART</input>
+    <input type="radio" th:field="*{favProgramLang}"  th:value="Python">Python</input>-->
+
+    <input type="radio" th:field="*{favProgramLang}"
+                        th:each="langs : ${lang}"
+                        th:value="${langs}"
+                        th:text="${langs}"/>
+
+    <br><br>
+
+    Favourite OS:
+
+    <input type="checkbox" th:field="*{favOS}"  th:value="Linux">Linux</input>
+    <input type="checkbox" th:field="*{favOS}"  th:value="'Microsoft Windows'">Microsoft Windows</input>
+    <input type="checkbox" th:field="*{favOS}"  th:value="MacOS">MacOS</input>
+
+    <br><br>
+    <input type="submit" value="SUBMIT">
+
+
+
+</form>
+
+</body>
+</html>
