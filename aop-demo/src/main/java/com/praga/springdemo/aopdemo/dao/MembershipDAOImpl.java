@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 public class MembershipDAOImpl implements MembershipDAO{
 
     MembershipDAOImpl(){
-        System.out.println("inside cont");
+
     }
 
     @Override

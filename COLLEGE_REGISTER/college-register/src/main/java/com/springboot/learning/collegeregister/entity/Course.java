@@ -32,6 +32,9 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name="student_id"))
     private List<Student> studentList;
 
+    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER,cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    private List<Book> books;
+
     public Course(){}
 
     public Course(String title, String author) {
@@ -82,6 +85,17 @@ public class Course {
         }
         this.studentList.addAll(studentList);
         //this.studentList = studentList;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Book book) {
+        if(this.books == null){
+            this.books = new ArrayList<>();
+        }
+        this.books.add(book);
     }
 
     @Override

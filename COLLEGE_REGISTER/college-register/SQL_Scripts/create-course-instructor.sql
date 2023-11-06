@@ -31,3 +31,9 @@ create table intructor_detail(
     primary key(id),
     foreign key(instructor_id) references instructor(id)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+alter table course add column author varchar(125);
+
+alter table instructor add column course_id int;
+alter table instructor add foreign key(course_id) references course(id);

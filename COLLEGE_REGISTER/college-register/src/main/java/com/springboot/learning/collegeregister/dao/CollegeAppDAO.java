@@ -1,8 +1,6 @@
 package com.springboot.learning.collegeregister.dao;
 
-import com.springboot.learning.collegeregister.entity.Course;
-import com.springboot.learning.collegeregister.entity.Instructor;
-import com.springboot.learning.collegeregister.entity.Student;
+import com.springboot.learning.collegeregister.entity.*;
 
 import java.util.List;
 
@@ -17,6 +15,10 @@ public interface CollegeAppDAO {
     public void addCourseToStudent(Student student, List<Course> course);
 
     public Student findStudentById(int id);
+
+    public void addNewBook(Book book);
+
+    public void addReview(Book book, Review review);
 
 
 

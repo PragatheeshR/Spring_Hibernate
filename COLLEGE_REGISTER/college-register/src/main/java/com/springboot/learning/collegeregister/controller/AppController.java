@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/college")
 public class AppController {
 
     private CollegeAppService collegeAppService;
@@ -21,7 +21,13 @@ public class AppController {
         this.collegeAppService = collegeAppService;
     }
 
-    @GetMapping("/")
+
+    @GetMapping("/homepage")
+    public String homePage(){
+        return "home-page";
+    }
+
+    @GetMapping("/showStudentForm")
     public String showForm(Model model){
         Student student = new Student();
         StudentDetail studentDetail = new StudentDetail();

@@ -1,8 +1,6 @@
 package com.springboot.learning.collegeregister.dao;
 
-import com.springboot.learning.collegeregister.entity.Course;
-import com.springboot.learning.collegeregister.entity.Instructor;
-import com.springboot.learning.collegeregister.entity.Student;
+import com.springboot.learning.collegeregister.entity.*;
 import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,5 +45,18 @@ public class CollegeAppDAOImpl implements  CollegeAppDAO{
     @Override
     public Student findStudentById(int id) {
         return entityManager.find(Student.class, id);
+    }
+
+    @Override
+    @Transactional
+    public void addNewBook(Book book) {
+        entityManager.merge(book);
+    }
+
+    @Override
+    @Transactional
+    public void addReview(Book book, Review review) {
+        book.setReviews(review);
+        addNewBook(book);
     }
 }
