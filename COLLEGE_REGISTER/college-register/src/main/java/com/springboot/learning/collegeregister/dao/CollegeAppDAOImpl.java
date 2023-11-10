@@ -2,6 +2,7 @@ package com.springboot.learning.collegeregister.dao;
 
 import com.springboot.learning.collegeregister.entity.*;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,5 +59,11 @@ public class CollegeAppDAOImpl implements  CollegeAppDAO{
     public void addReview(Book book, Review review) {
         book.setReviews(review);
         addNewBook(book);
+    }
+
+    @Override
+    public List<Student> findAllStudents() {
+        TypedQuery<Student> studentTypedQuery =  entityManager.createQuery("from Student", Student.class);
+        return studentTypedQuery.getResultList();
     }
 }

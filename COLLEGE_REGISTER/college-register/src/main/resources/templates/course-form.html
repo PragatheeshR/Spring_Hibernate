@@ -7,7 +7,7 @@
 <body>
 
 <h3>Student Registration Form</h3>
-<form th:action="@{/processCourseForm}" th:object="${course}" method="POST">
+<form th:action="@{/college/processCourseForm}" th:object="${course}" method="POST">
 
     Course Name :<input type="text" th:field="*{title}"/>
     <br><br>

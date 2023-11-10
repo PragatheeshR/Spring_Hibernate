@@ -20,6 +20,8 @@ public interface CollegeAppDAO {
 
     public void addReview(Book book, Review review);
 
+    public List<Student> findAllStudents();
+
 
 
 }

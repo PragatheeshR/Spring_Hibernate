@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/college")
 public class AppController {
@@ -23,7 +25,11 @@ public class AppController {
 
 
     @GetMapping("/homepage")
-    public String homePage(){
+    public String homePage(Model model){
+
+        List<Student> studentList = collegeAppService.findAllStudents();
+        model.addAttribute("students", studentList);
+
         return "home-page";
     }
 
@@ -50,12 +56,13 @@ public class AppController {
         System.out.println(student);
         System.out.println(student.getStudentDetail());
         collegeAppService.saveStudent(student);
-        return "redirect:/";
+        return "redirect:/college/homepage";
     }
 
     @PostMapping("/processCourseForm")
     public String processCourseForm(@ModelAttribute Course course){
         collegeAppService.saveNewCourse(course);
-        return "course-form";
+        System.out.println("Added data to DB");
+        return "redirect:/college/homepage";
     }
 }

@@ -5,6 +5,8 @@ import com.springboot.learning.collegeregister.entity.Course;
 import com.springboot.learning.collegeregister.entity.Student;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CollegeAppService {
 
@@ -20,5 +22,9 @@ public class CollegeAppService {
 
     public void saveNewCourse(Course course){
         collegeAppDAO.addNewCourse(course);
+    }
+
+    public List<Student> findAllStudents(){
+        return collegeAppDAO.findAllStudents();
     }
 }
