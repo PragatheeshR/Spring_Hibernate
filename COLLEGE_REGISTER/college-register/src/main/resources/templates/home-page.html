@@ -10,9 +10,10 @@
 
 <h3>Home Page</h3>
 
-<a th:href="@{/college/showStudentForm}"> Add new Student </a>
-<br><br>
-<a th:href="@{/college/showCourseForm}"> Add new Course </a>
+<a th:href="@{/college/showStudentForm}" class="btn btn-info btn-sm mb-3" > Add new Student </a>
+<a th:href="@{/college/showCourseForm}"  class="btn btn-info btn-sm mb-3"> Add new Course </a>
+<a th:href="@{/college/showCourses}"  class="btn btn-info btn-sm mb-3"> Show Courses </a>
+<a th:href="@{/college/showBookForm}"  class="btn btn-info btn-sm mb-3"> Add Book</a>
 
 <table class="table table-bordered table-striped">
   <thead class="table-dark">
@@ -21,6 +22,7 @@
     <th>Last Name</th>
     <th>Department</th>
     <th>Phone Number</th>
+    <th>Course Action</th>
   </tr>
   </thead>
 
@@ -29,13 +31,13 @@
     <td th:text="${tempEmp.firstName}"/>
     <td th:text="${tempEmp.lastName}"/>
     <td th:text="${tempEmp.dept}"/>
-    <td th:text="${tempEmp.email}"/>
+    <td th:text="${tempEmp.phoneNumber}"/>
 
-    <!-- <td>
-       <a th:href="@{/employees/showFormUpdate/(empId=${tempEmp.id})}" class="btn btn-info btn-sm mb-3" >Update</a>
-       <a th:href="@{/employees/delete/(empId=${tempEmp.id})}" class="btn btn-info btn-sm mb-3" >Delete</a>
+    <td>
+       <a th:href="@{/college/showAllCourses/(stdId=${tempEmp.id})}" class="btn btn-info btn-sm mb-3" >Add Course</a>
+       <a th:href="@{/college/showMyCourse/(studentId=${tempEmp.id})}" class="btn btn-info btn-sm mb-3" >Delete Course</a>
      </td>
-     <td>
+     <!--<td>
          <a th:href="@{/employees/delete/(empId=${tempEmp.id})}" class="btn btn-info btn-sm mb-3" >Delete</a>
 
      </td>-->

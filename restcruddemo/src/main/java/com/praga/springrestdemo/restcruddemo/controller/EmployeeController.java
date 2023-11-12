@@ -1,5 +1,7 @@
 package com.praga.springrestdemo.restcruddemo.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.praga.springrestdemo.restcruddemo.entity.Employees;
 import com.praga.springrestdemo.restcruddemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +40,23 @@ public class EmployeeController {
     //public api to check how it works
     @GetMapping("/public")
     public Object getRandom(){
-        String uri = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,windspeed_10m&hourly=temperature_2m,relativehumidity_2m,windspeed_10m";
+        String uri = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
         RestTemplate restTemplate = new RestTemplate();
         Object result =  restTemplate.getForObject(uri,Object.class);
+        // Parse JSON using Jackson
+        /*ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            // Convert JSON string to JsonNode
+            JsonNode jsonNode = objectMapper.readTree(result);
+
+            // Extract a particular key-value pair
+           // result = jsonNode.get("hourly_units").toString();
+            //int userId = jsonNode.get("userId").asInt();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
+
         return result;
     }
 

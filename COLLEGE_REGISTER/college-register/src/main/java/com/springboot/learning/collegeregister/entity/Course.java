@@ -3,8 +3,6 @@ package com.springboot.learning.collegeregister.entity;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -32,7 +30,7 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name="student_id"))
     private List<Student> studentList;
 
-    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER,cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY,cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     private List<Book> books;
 
     public Course(){}

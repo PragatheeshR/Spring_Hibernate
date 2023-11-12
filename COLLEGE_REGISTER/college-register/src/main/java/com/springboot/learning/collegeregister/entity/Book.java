@@ -20,7 +20,7 @@ public class Book {
     @Column(name = "author")
     private String author;
 
-    @Column(name = "isAvailable")
+    @Column(name = "isavailable")
     private boolean isAvailable;
 
     @OneToMany(mappedBy = "book", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
