@@ -165,6 +165,39 @@ public class CollegeAppDAOImpl implements  CollegeAppDAO{
         return entityManager.find(Book.class, id);
     }
 
+    @Override
+    @Transactional
+    public List<Review> addReviewForBookId(Review review, int bookId) {
+            Book book = findBookById(bookId);
+            review.setBook(book);
+            entityManager.merge(review);
+            return getAllReviewForBook(bookId);
+    }
+
+    @Override
+    public List<Review> getAllReviewForBook(int id) {
+        TypedQuery<Review> query = entityManager.createQuery("from Review where book.id = :data", Review.class);
+        query.setParameter("data", id);
+
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Book> showSubBook(int courseId) {
+        Course course = findCourseById(courseId);
+        return course.getBooks();
+    }
+
+    @Override
+    @Transactional
+    public void deleteSubCourse(int courseId, int studentId) {
+        Student student = findStudentById(studentId);
+        Course course = findCourseById(courseId);
+        student.getCourses().remove(course);
+        course.getStudentList().remove(student);
+        entityManager.merge(student);
+    }
+
 
     @Override
     @Transactional
@@ -176,6 +209,8 @@ public class CollegeAppDAOImpl implements  CollegeAppDAO{
         entityManager.merge(student);
 
     }
+
+
 
 
 }

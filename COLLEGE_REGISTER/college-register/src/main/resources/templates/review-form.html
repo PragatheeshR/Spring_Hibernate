@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>Couses</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/form-page.css}">
+</head>
+<body>
+
+<h3>Student Registration Form</h3>
+
+<script>
+  function validate(){
+      var bookName = document.forms["dataForm"]["description"].value;
+      if(bookName.trim() == ""){
+          alert("Description Should not be empty");
+          return false;
+      }
+
+
+
+  }
+
+</script>
+
+<form name="dataForm" th:action="@{/college/processReviewForm/(bookId = ${bookId})}" th:object="${review}" method="POST" onsubmit="return validate()">
+
+  Add Review :<input name="description" type="text" th:field="*{reviewDescription}"  required/>
+  <br><br>
+
+  <input type="submit" value="SUBMIT">
+</form>
+<!--<a href="@{/college/processReviewForm/${bookId}}">Test</a>-->
+<br><br>
+<br><br>
+<!--<h2>Reviews</h2>
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
+  <tr>
+    <th>Review</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr th:each="review : ${reviews}" >
+    <td th:text="${review.reviewDescription}"/>
+  </tr>
+
+  </tbody>
+
+</table>-->
+
+<h2>Book Reviews</h2>
+
+<ul>
+  <li th:each="review : ${reviews}" th:text="${review.reviewDescription}"></li>
+</ul>
+
+</body>
+</html>

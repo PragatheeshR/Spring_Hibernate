@@ -55,7 +55,6 @@ public class Review {
         return "Review{" +
                 "id=" + id +
                 ", reviewDescription='" + reviewDescription + '\'' +
-                ", book=" + book +
                 '}';
     }
 }

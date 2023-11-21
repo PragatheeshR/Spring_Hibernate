@@ -1,7 +1,6 @@
 package com.springboot.learning.collegeregister.dao;
 
 import com.springboot.learning.collegeregister.entity.*;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -44,6 +43,15 @@ public interface CollegeAppDAO {
     public void addBookToCourse(int courseId, int bookId);
 
     public Book findBookById(int id);
+
+    public List<Review> addReviewForBookId(Review review, int bookId);
+
+    public List<Review> getAllReviewForBook(int id);
+
+    public List<Book> showSubBook(int courseId);
+
+    public void deleteSubCourse(int courseId, int bookId);
+
 
 
 

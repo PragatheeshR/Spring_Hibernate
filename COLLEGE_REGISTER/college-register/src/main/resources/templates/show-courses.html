@@ -5,12 +5,12 @@
     <title>Couses</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 </head>
 <body>
 
 
-
-<table class="table table-bordered table-striped">
+<table id="myTable" class="table table-bordered table-striped">
     <thead class="table-dark">
     <tr>
         <th>Course Name</th>
@@ -27,8 +27,9 @@
 
 
         <td>
-            <a th:href="@{/college/addCourse/(courseId=${course.id}, studentId=${stdId})}" class="btn btn-info btn-sm mb-3">Add</a>
-            <a th:href="@{/college/deleteCourse/(courseId=${course.id}, studentId=${stdId})}" class="btn btn-info btn-sm mb-3" >Delete</a>
+            <a th:if="${addCourse} != 'addData'" th:href="@{/college/deleteSubCourse/(courseId=${course.id}, studentId=${stdId})}" class="btn btn-info btn-sm mb-3" >Remove Course</a>
+            <a th:href="@{/college/showSubBooks/(courseId=${course.id})}" class="btn btn-info btn-sm mb-3">Books</a>
+
         </td>
 
     </tr>
@@ -38,7 +39,7 @@
 
 </table>
 
-<a th:href="@{/college/homepage}" class="btn btn-info btn-sm mb-3">HOME PAGE</a>
+<a th:href="@{/college/homepage}" class="btn btn-info btn-sm mb-3" >HOME PAGE</a>
 
 
 </body>

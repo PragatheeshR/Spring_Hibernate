@@ -3,9 +3,9 @@ package com.springboot.learning.collegeregister.service;
 import com.springboot.learning.collegeregister.dao.CollegeAppDAO;
 import com.springboot.learning.collegeregister.entity.Book;
 import com.springboot.learning.collegeregister.entity.Course;
+import com.springboot.learning.collegeregister.entity.Review;
 import com.springboot.learning.collegeregister.entity.Student;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -71,6 +71,21 @@ public class CollegeAppService {
         return collegeAppDAO.getAllBooks();
     }
 
+    public List<Review> addReviewForBookId(Review review, int bookId){
+        return collegeAppDAO.addReviewForBookId(review, bookId);
+    }
+
+    public List<Review> getReviewForBookId(int bookId){
+        return collegeAppDAO.getAllReviewForBook(bookId);
+    }
+
+    public List<Book> showSubBook(int courseId){
+        return collegeAppDAO.showSubBook(courseId);
+    }
+
+    public void deleteSubBooks(int courseId, int bookId){
+        collegeAppDAO.deleteSubCourse(courseId, bookId);
+    }
 
 
 
