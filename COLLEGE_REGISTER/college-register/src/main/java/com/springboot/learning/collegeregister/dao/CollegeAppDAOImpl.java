@@ -21,13 +21,20 @@ public class CollegeAppDAOImpl implements  CollegeAppDAO{
     @Override
     @Transactional
     public void saveStudent(Student student) {
-        entityManager.persist(student);
+        entityManager.merge(student);
+    }
+
+    @Override
+    @Transactional
+    public void deleteStudent(int studentId) {
+        Student student = findStudentById(studentId);
+        entityManager.remove(student);
     }
 
     @Override
     @Transactional
     public void addNewCourse(Course course) {
-        entityManager.persist(course);
+        entityManager.merge(course);
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.springboot.learning.collegeregister.entity.Book;
 import com.springboot.learning.collegeregister.entity.Course;
 import com.springboot.learning.collegeregister.entity.Review;
 import com.springboot.learning.collegeregister.entity.Student;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,17 +14,36 @@ import java.util.List;
 public class CollegeAppService {
 
     CollegeAppDAO collegeAppDAO;
+    @Autowired
+    MailService mailService;
+
+    static String stdEnrollSubject = "Student Enrollment";
+    static String courseEnrollSubject = "Course Enrollment";
+
 
     public CollegeAppService(CollegeAppDAO collegeAppDAO) {
         this.collegeAppDAO = collegeAppDAO;
     }
 
     public void saveStudent(Student student){
+
         collegeAppDAO.saveStudent(student);
+        String receiverMailId = student.getEmail();
+        String message = "Student "+student.getFirstName()+" is Enrolled in "+student.getDept();
+
+        mailService.sendEmail(receiverMailId, stdEnrollSubject, message);
     }
+
+    public void deleteStudent(int studentId){
+        collegeAppDAO.deleteStudent(studentId);
+    };
 
     public void saveNewCourse(Course course){
         collegeAppDAO.addNewCourse(course);
+    }
+
+    public Course findCourseById(int courseId){
+        return collegeAppDAO.findCourseById(courseId);
     }
 
     public List<Student> findAllStudents(){
@@ -36,6 +56,16 @@ public class CollegeAppService {
 
     public void addCourseToStudent(int stId, int courseId){
         collegeAppDAO.addCourseToStudent(stId, courseId);
+        Student student = collegeAppDAO.findStudentById(stId);
+        Course course = collegeAppDAO.findCourseById(courseId);
+
+        String receiverMailId = student.getEmail();
+        String message = "Student Name : "+student.getFirstName()+" \n\r" +
+                         "Course Name  : "+course.getTitle()+" \n\r"+
+                         "Instructor   :"+course.getAuthor()+"\n\r"+
+                         "Books For Ref :"+course.getBooks();
+        mailService.sendEmail(receiverMailId,courseEnrollSubject,message);
+
     }
 
     public List<Course> findAllCourseSubscribed(int id){

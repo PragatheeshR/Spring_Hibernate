@@ -41,6 +41,12 @@ button:hover {
     background-color: #45a049;
 }
 
-#successAlert {
-    margin-top: 20px;
+alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: .25rem;
 }

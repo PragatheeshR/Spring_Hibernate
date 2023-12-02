@@ -25,6 +25,7 @@ public class AppController {
     public String homePage(Model model) {
 
         List<Student> studentList = collegeAppService.findAllStudents();
+        System.out.println("INNNNNNNN"+model.getAttribute("check"));
         model.addAttribute("students", studentList);
         if(model.containsAttribute("check")){
             System.out.println("YESSSS");
@@ -42,9 +43,15 @@ public class AppController {
         return "student-form";
     }
 
-    @GetMapping("/showCourseForm")
-    public String showCourseForm(Model model) {
-        Course course = new Course();
+    @GetMapping("/showCourseForm/")
+    public String showCourseForm(Model model, @RequestParam("courseId") int courseId) {
+
+        Course course = null;
+        if(courseId == 0)
+            course = new Course();
+        else{
+           course =  collegeAppService.findCourseById(courseId);
+        }
         model.addAttribute("course", course);
         return "course-form";
     }
@@ -58,9 +65,17 @@ public class AppController {
         return "redirect:/college/homepage";
     }
 
+    @GetMapping("/deleteStudent/")
+    public String deleteStudent(@RequestParam("studentId") int studentId){
+        collegeAppService.deleteStudent(studentId);
+        return "redirect:/college/homepage";
+
+    }
+
     @PostMapping("/processCourseForm")
-    public String processCourseForm(@ModelAttribute Course course) {
+    public String processCourseForm(@ModelAttribute Course course, Model model) {
         collegeAppService.saveNewCourse(course);
+        model.addAttribute("successMessage", "Course Added succesfully");
         System.out.println("Added data to DB");
         return "redirect:/college/homepage";
     }
@@ -177,9 +192,11 @@ public class AppController {
     }
 
     @GetMapping("/showSubBooks/")
-    public String showSubBooks(Model model, @RequestParam("courseId") int courseId) {
+    public String showSubBooks(Model model, @RequestParam("courseId") int courseId, @RequestParam("studentId") int studentId) {
         List<Book> bookList = collegeAppService.showSubBook(courseId);
         model.addAttribute("books", bookList);
+        model.addAttribute("courseId", courseId);
+        model.addAttribute("studentId", studentId);
         return "show-sub-books";
     }
 

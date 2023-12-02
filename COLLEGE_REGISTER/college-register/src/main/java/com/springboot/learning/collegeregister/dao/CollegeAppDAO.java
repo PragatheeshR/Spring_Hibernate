@@ -8,6 +8,8 @@ public interface CollegeAppDAO {
 
     public void saveStudent(Student student);
 
+    public void deleteStudent(int studentId);
+
     public void addNewCourse(Course course);
 
     public void addNewInstructor(Instructor instructor);

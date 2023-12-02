@@ -4,15 +4,37 @@
     <meta charset="UTF-8">
     <title>Student Form</title>
     <link rel="stylesheet" th:href="@{/form-page.css}">
+
 </head>
 <body>
 
-<h3>Student Registration Form</h3>
-<form th:action="@{/college/processCourseForm}" th:object="${course}" method="POST">
 
-    Course Name :<input type="text" th:field="*{title}"/>
+
+<h3>Course</h3>
+<script>
+    function validate(){
+        var bookName = document.forms["dataForm"]["title"].value;
+        alert("Course title should not be empty");
+        if(bookName.trim() == ""){
+            alert("Course title should not be empty");
+            return false;
+        }
+
+        var author = document.forms["dataForm"]["author"].value;
+        if(author.trim() == ""){
+            alert("Author should not be empty");
+            return false;
+        }
+
+
+    }
+
+</script>
+<form th:action="@{/college/processCourseForm}" th:object="${course}" method="POST" onsubmit="return validate()">
+
+    Course Name :<input name="title" type="text" th:field="*{title}" required/>
     <br><br>
-    Author    :<input type="text" th:field="*{author}"/>
+    Author    :<input name="author" type="text" th:field="*{author}" required/>
     <br><br>
     <input type="submit" value="SUBMIT">
 

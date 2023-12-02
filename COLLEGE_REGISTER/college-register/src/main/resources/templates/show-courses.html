@@ -28,7 +28,8 @@
 
         <td>
             <a th:if="${addCourse} != 'addData'" th:href="@{/college/deleteSubCourse/(courseId=${course.id}, studentId=${stdId})}" class="btn btn-info btn-sm mb-3" >Remove Course</a>
-            <a th:href="@{/college/showSubBooks/(courseId=${course.id})}" class="btn btn-info btn-sm mb-3">Books</a>
+            <a th:if="${addCourse} == 'addData'" th:href="@{/college/addCourse/(courseId=${course.id}, studentId=${stdId})}" class="btn btn-info btn-sm mb-3" >Enroll</a>
+            <a th:if="${addCourse} != 'addData'" th:href="@{/college/showSubBooks/(courseId=${course.id}, studentId=${stdId})}" class="btn btn-info btn-sm mb-3">Books</a>
 
         </td>
 
